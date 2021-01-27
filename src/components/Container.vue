@@ -6,11 +6,9 @@
             <button class="btnAdicionar" id="btnAdd" v-on:click="addValor">Adicionar</button>
         </div>
         <div class="card" v-if="entradas.length <= 0">Sem entradas</div>
-        <!-- <div class="card" v-else v-for="(e, index) in entradas" v-bind:key="index">{{e.estabelecimento}} - R$ {{e.custo}}</div> -->
         <Lista v-else :lista="entradas"/>
         
         <div class="card" v-if="saidas.length <= 0">Sem saídas</div>
-        <!-- <div class="card" v-else v-for="(s, index) in saidas" v-bind:key="index">{{s.estabelecimento}} - R$ {{s.custo*-1}}</div> -->
         <Lista v-else :lista="saidas" />
         <div class="card" v-if="total >= 0.00">{{total}}</div>
     </div>
