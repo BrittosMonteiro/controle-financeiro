@@ -62,10 +62,10 @@ export default {
     },
     created(){
         let entradaStorage = localStorage.getItem('entradas')
-        if(entradaStorage != null){
-            console.log(JSON.parse(entradaStorage))
-            this.entradas.push(...JSON.parse(entradaStorage))
-        }
+        {entradaStorage != null ? this.entradas.push(...JSON.parse(entradaStorage)) : ''}
+
+        let saidasStorage = localStorage.getItem('saidas')
+        {saidasStorage != null ? this.saidas.push(...JSON.parse(saidasStorage)) : ''}
     }
 }
 </script>
