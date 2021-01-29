@@ -3,6 +3,11 @@
         <div class="card">
             <input type="text" class="inputText" name="estab" id="estab" placeholder="Estabelecimento" v-model="estab">
             <input type="number" class="inputText" name="valor" id="valor" placeholder="Valor" v-model="valor">
+            <select name="category" class="inputText" v-model="categoria">
+                <option value="">Categoria</option>
+                <option value="entrada">Entrada</option>
+                <option value="saida">Saída</option>
+            </select> 
             <button class="btnAdicionar" id="btnAdd" v-on:click="addValor">Adicionar</button>
         </div>
 
@@ -34,15 +39,21 @@ export default {
             saidas:[],
             estab: '',
             valor: '',
+            categoria: '',
         }
     },
     methods: {
         addValor(){
             let estab = this.estab;
             let valor = parseFloat(this.valor);
+            let categoria = this.categoria;
 
             if(valor == 0  || valor == '' || valor === ''){
                 return alert('Informe o valor!')
+            }
+
+            if(categoria == '' || categoria === ''){
+                return alert('Informe a categoria')
             }
 
             if(valor < 0){
