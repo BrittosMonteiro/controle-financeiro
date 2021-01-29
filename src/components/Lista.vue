@@ -27,6 +27,7 @@ export default {
     box-shadow: 0 0 0.3em #444;
     margin: 0 5px;
     padding: 10px;
+    border-radius: 3px;
 }
 .listTitle{
     display: flex;
