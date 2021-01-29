@@ -25,7 +25,7 @@ export default {
   outline: 0;
   border: none;
   list-style-type: none;
-  font-family: "Trebuchet MS";
+  font-family: 'Roboto Slab';
 }
 html, body{
   width: 100%;
@@ -42,6 +42,6 @@ button{
   max-width: 1140px;
   height: 100%;
   margin: auto;
-  /* background-color: #323425; */
+  padding: 15px 0;
 }
 </style>

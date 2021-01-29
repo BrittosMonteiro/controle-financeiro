@@ -10,17 +10,20 @@
         
         <div class="card" v-if="saidas.length <= 0">Sem saídas</div>
         <Lista v-else :lista="saidas" />
-        <div class="card" v-if="total >= 0.00">{{total}}</div>
+        <!-- <div class="card" v-if="total >= 0.00">{{total}}</div> -->
+        <DisplayValue title="Total" v-bind:value="total" />
     </div>
 </template>
 
 <script>
 import Lista from './Lista'
+import DisplayValue from './DisplayValue'
 
 export default {
     name: 'Container',
     components:{
-        Lista
+        Lista,
+        DisplayValue,
     },
     data(){
         return {
@@ -54,7 +57,7 @@ export default {
                 localStorage.setItem('entradas', JSON.stringify(this.entradas))
             }
 
-            this.total = (parseInt(this.entradas.reduce((t, i) => t+i.custo, 0)))+(parseInt(this.saidas.reduce((t, i) => t+i.custo, 0)))
+            this.total = (parseFloat(this.entradas.reduce((t, i) => t+i.custo, 0)))+(parseFloat(this.saidas.reduce((t, i) => t+i.custo, 0)))
 
             this.estab = '';
             this.valor = '';
@@ -66,6 +69,11 @@ export default {
 
         let saidasStorage = localStorage.getItem('saidas')
         {saidasStorage != null ? this.saidas.push(...JSON.parse(saidasStorage)) : ''}
+
+        let somaEntrada = this.entradas.reduce((soma, x) => soma+x.custo, 0);
+        let somaSaida = this.saidas.reduce((soma, y) => soma + y.custo, 0);
+
+        this.total = somaEntrada+somaSaida;
     }
 }
 </script>
