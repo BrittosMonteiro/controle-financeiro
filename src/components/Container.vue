@@ -107,7 +107,7 @@ export default {
     padding: 10px;
     align-items: center;
     justify-content: flex-start;
-    border: 1px solid #ccc;
+    background-color: #123;
 }
 .inputText{
     padding: 5px 10px;
@@ -117,7 +117,7 @@ export default {
 }
 .card button{
     padding: 5px;
-    background-color: #1111ff;
+    background-color: #f33;
     border-radius: 3px;
     color: #eee;
 }
