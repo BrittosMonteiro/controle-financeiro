@@ -5,12 +5,14 @@
             <input type="number" class="inputText" name="valor" id="valor" placeholder="Valor" v-model="valor">
             <button class="btnAdicionar" id="btnAdd" v-on:click="addValor">Adicionar</button>
         </div>
-        <div class="card" v-if="entradas.length <= 0">Sem entradas</div>
-        <Lista v-else :lista="entradas"/>
+
+        <div class="group">
+            <Lista v-if="entradas.length <= 0" title="Sem entradas"/>
+            <Lista v-else :lista="entradas" title="Entradas"/>
+            <Lista v-if="saidas.length <= 0" title="Sem saídas"/>
+            <Lista v-else :lista="saidas" title="Saídas"/>
+        </div>
         
-        <div class="card" v-if="saidas.length <= 0">Sem saídas</div>
-        <Lista v-else :lista="saidas" />
-        <!-- <div class="card" v-if="total >= 0.00">{{total}}</div> -->
         <DisplayValue title="Total" v-bind:value="total" />
     </div>
 </template>
@@ -107,5 +109,11 @@ export default {
     background-color: #1111ff;
     border-radius: 3px;
     color: #eee;
+}
+.group{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
 }
 </style>
