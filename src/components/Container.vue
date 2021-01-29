@@ -34,7 +34,7 @@ export default {
     methods: {
         addValor(){
             let estab = this.estab;
-            let valor = parseInt(this.valor);
+            let valor = parseFloat(this.valor);
 
             if(valor == 0  || valor == '' || valor === ''){
                 return alert('Informe o valor!')
