@@ -41,13 +41,4 @@ export default {
     font-weight: bold;
     font-size: 18px;
 }
-.green{
-    color: #4ebd4e;
-}
-.red{
-    color: #ee3434;
-}
-.white{
-    color: #f6f4eb;
-}
 </style>

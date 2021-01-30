@@ -128,7 +128,7 @@ export default {
     height: 35px;
     margin: 0 15px 0 0;
     border-radius: 1px;
-    background-color: #202020;
+    background-color: #101010;
     border: 1px solid transparent;
     color: #f6f4eb;
     transition: all 0.6s ease-in-out;
@@ -153,8 +153,8 @@ export default {
 }
 .group{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 100%;
-    justify-content: center;
+    justify-content: space-between;
 }
 </style>

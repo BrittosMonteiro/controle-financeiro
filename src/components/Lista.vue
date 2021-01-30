@@ -1,8 +1,14 @@
 <template>
     <div class="lista">
-        <h1 class="listTitle">{{title}}</h1>
+        <div class="listHeading">
+            <h1 class="listTitle">{{title}}</h1>
+            <span v-if="total > 0" class="listTotal green">R$ {{total}}</span>
+            <span v-if="total < 0" class="listTotal red">R$ {{total}}</span>
+        </div>
         <ol class="list">
-            <li class="listItem" v-for="(l, index) in lista" v-bind:key="index">{{l.origin}} - R$ {{l.custo}}</li>
+            <li class="listItem" v-for="(l, index) in lista" v-bind:key="index">
+                {{l.origin}} - R$ {{l.custo}}
+            </li>
         </ol>
     </div>
 </template>
@@ -13,6 +19,11 @@ export default {
     props:{
         title: String,
         lista: Array
+    },
+    data(){
+        return{
+            total: this.lista.reduce((x, i) => x+i.custo, 0)
+        }
     }
 }
 </script>
@@ -21,13 +32,17 @@ export default {
 .lista{
     display: flex;
     flex-direction: column;
-    width: 100%;
-    max-width: 200px;
-    background-color: #123;
-    box-shadow: 0 0 0.3em #444;
-    margin: 0 5px;
+    width: 49%;
+    background-color: #171717;
+    box-shadow: 0 0 0.2em #333;
+    margin: 15px 0 0 0;
     padding: 10px;
     border-radius: 3px;
+}
+.listHeading{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 .listTitle{
     display: flex;
@@ -38,9 +53,9 @@ export default {
 .listItem{
     display: flex;
     padding: 5px;
-    margin: 5px 0;
+    margin: 10px 0;
     color: #f6f4eb;
-    background-color: #345;
+    background-color: #111;
     border-radius: 3px;
 }
 </style>
