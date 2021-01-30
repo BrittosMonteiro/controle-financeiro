@@ -86,6 +86,7 @@ export default {
 
             this.origin = '';
             this.valor = '';
+            this.categoria = '';
         },
     },
     created(){
