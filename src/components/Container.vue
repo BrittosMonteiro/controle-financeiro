@@ -1,15 +1,22 @@
 <template>
     <div class="container">
         <div class="card">
-            <input type="text" class="inputText" name="estab" id="estab" placeholder="Estabelecimento" v-model="estab">
-            <input type="number" class="inputText" name="valor" id="valor" placeholder="Valor" v-model="valor">
-            <select name="category" class="inputText" v-model="categoria">
-                <option value="">Categoria</option>
-                <option value="entrada">Entrada</option>
-                <option value="saida">Saída</option>
-            </select> 
-            <button class="btnAdicionar" id="btnAdd" v-on:click="addValor">Adicionar</button>
+            <button class="btnNewInformation" @click="btnNewInformation">
+                + Nova informação
+            </button>
+            <div class="formNewInformation" v-if="visible">
+                <input type="text" class="inputText" name="origin" id="origin" placeholder="Origem" v-model="origin" autofocus>
+                <input type="number" class="inputText" name="valor" id="valor" placeholder="Valor" v-model="valor">
+                <select name="category" class="inputText" v-model="categoria">
+                    <option value="">Categoria</option>
+                    <option value="entrada">Entrada</option>
+                    <option value="saida">Saída</option>
+                </select> 
+                <button class="btnAdd" id="btnAdd" v-on:click="addValor">Adicionar</button>
+            </div>
         </div>
+        
+        <DisplayValue title="Total" v-bind:value="total" />
 
         <div class="group">
             <Lista v-if="entradas.length <= 0" title="Sem entradas"/>
@@ -17,8 +24,7 @@
             <Lista v-if="saidas.length <= 0" title="Sem saídas"/>
             <Lista v-else :lista="saidas" title="Saídas"/>
         </div>
-        
-        <DisplayValue title="Total" v-bind:value="total" />
+
     </div>
 </template>
 
@@ -37,14 +43,18 @@ export default {
             total: 0,
             entradas: [],
             saidas:[],
-            estab: '',
+            origin: '',
             valor: '',
             categoria: '',
+            visible: false
         }
     },
     methods: {
+        btnNewInformation(){
+            this.visible = !this.visible;
+        },
         addValor(){
-            let estab = this.estab;
+            let origin = this.origin;
             let valor = parseFloat(this.valor);
             let categoria = this.categoria;
 
@@ -58,13 +68,13 @@ export default {
 
             if(valor < 0){
                 this.saidas.push({
-                    estabelecimento: estab,
+                    origin: origin,
                     custo: valor
                 })
                 localStorage.setItem('saidas', JSON.stringify(this.saidas))
             } else {
                 this.entradas.push({
-                    estabelecimento: estab,
+                    origin: origin,
                     custo: valor
                 })
                 localStorage.setItem('entradas', JSON.stringify(this.entradas))
@@ -72,7 +82,7 @@ export default {
 
             this.total = (parseFloat(this.entradas.reduce((t, i) => t+i.custo, 0)))+(parseFloat(this.saidas.reduce((t, i) => t+i.custo, 0)))
 
-            this.estab = '';
+            this.origin = '';
             this.valor = '';
         },
     },
@@ -94,36 +104,56 @@ export default {
 <style scoped>
 .container{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
     align-items: flex-start;
     justify-content: space-between;
+    margin:15px 0;
 }
 .card{
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     width: 100%;
-    max-width: 200px;
-    padding: 10px;
-    align-items: center;
     justify-content: flex-start;
-    background-color: #123;
+    margin: 0 0 15px 0;
+}
+.formNewInformation{
+    display: flex;
+    margin: 10px 0;
 }
 .inputText{
     padding: 5px 10px;
-    border-radius: 3px;
-    margin-bottom: 5px;
-    border: 1px solid #ccc;
+    width: 200px;
+    height: 35px;
+    margin: 0 15px 0 0;
+    border-radius: 1px;
+    background-color: #202020;
+    border: 1px solid transparent;
+    color: #f6f4eb;
+    transition: all 0.6s ease-in-out;
 }
-.card button{
+.inputText::placeholder{
+    color: #f6f4eb;
+    font-style: italic;
+}
+.inputText:focus{
+    border: 1px solid #f33
+}
+.btnAdd, .btnNewInformation{
+    height: 35px;
     padding: 5px;
     background-color: #f33;
-    border-radius: 3px;
     color: #eee;
+    border-radius: 2px;
+}
+.btnNewInformation{
+    width: 150px;
+    font-weight: 600;
 }
 .group{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
     justify-content: center;
 }

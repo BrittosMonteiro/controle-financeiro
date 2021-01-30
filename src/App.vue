@@ -25,12 +25,13 @@ export default {
   outline: 0;
   border: none;
   list-style-type: none;
-  font-family: 'Roboto Slab';
+  font-family: 'Montserrat';
+  box-sizing: border-box;
 }
 html, body{
   width: 100%;
   height: 100%;
-  background-color: #345;
+  background-color: #202020;
 }
 button{
   cursor: pointer;
@@ -42,6 +43,5 @@ button{
   max-width: 1140px;
   height: 100%;
   margin: auto;
-  padding: 15px 0;
 }
 </style>

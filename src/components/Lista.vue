@@ -2,7 +2,7 @@
     <div class="lista">
         <h1 class="listTitle">{{title}}</h1>
         <ol class="list">
-            <li class="listItem" v-for="(l, index) in lista" v-bind:key="index">{{l.estabelecimento}} - R$ {{l.custo}}</li>
+            <li class="listItem" v-for="(l, index) in lista" v-bind:key="index">{{l.origin}} - R$ {{l.custo}}</li>
         </ol>
     </div>
 </template>
