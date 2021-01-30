@@ -66,21 +66,23 @@ export default {
                 return alert('Informe a categoria')
             }
 
-            if(valor < 0){
+            if(categoria === 'saida'){
                 this.saidas.push({
                     origin: origin,
                     custo: valor
                 })
                 localStorage.setItem('saidas', JSON.stringify(this.saidas))
             } else {
-                this.entradas.push({
-                    origin: origin,
-                    custo: valor
-                })
-                localStorage.setItem('entradas', JSON.stringify(this.entradas))
+                if(categoria === 'entrada'){
+                    this.entradas.push({
+                        origin: origin,
+                        custo: valor
+                    })
+                    localStorage.setItem('entradas', JSON.stringify(this.entradas))
+                }
             }
 
-            this.total = (parseFloat(this.entradas.reduce((t, i) => t+i.custo, 0)))+(parseFloat(this.saidas.reduce((t, i) => t+i.custo, 0)))
+            this.total = (parseFloat(this.entradas.reduce((t, i) => t+i.custo, 0)))-(parseFloat(this.saidas.reduce((t, i) => t+i.custo, 0)))
 
             this.origin = '';
             this.valor = '';
@@ -96,7 +98,7 @@ export default {
         let somaEntrada = this.entradas.reduce((soma, x) => soma+x.custo, 0);
         let somaSaida = this.saidas.reduce((soma, y) => soma + y.custo, 0);
 
-        this.total = somaEntrada+somaSaida;
+        this.total = somaEntrada-somaSaida;
     }
 }
 </script>

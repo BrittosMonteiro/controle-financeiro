@@ -2,8 +2,8 @@
     <div class="lista">
         <div class="listHeading">
             <h1 class="listTitle">{{title}}</h1>
-            <span v-if="total > 0" class="listTotal green">R$ {{total}}</span>
-            <span v-if="total < 0" class="listTotal red">R$ {{total}}</span>
+            <span v-if="title == 'Entradas'" class="listTotal green">R$ {{total}}</span>
+            <span v-if="title == 'Saídas'" class="listTotal red">R$ {{total}}</span>
         </div>
         <ol class="list">
             <li class="listItem" v-for="(l, index) in lista" v-bind:key="index">
