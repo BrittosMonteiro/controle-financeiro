@@ -121,6 +121,7 @@ export default {
 .formNewInformation{
     display: flex;
     margin: 10px 0;
+    flex-wrap: wrap;
 }
 .inputText{
     padding: 5px 10px;

@@ -43,6 +43,7 @@ button{
   max-width: 1140px;
   height: 100%;
   margin: auto;
+  padding: 15px;
 }
 .green{
     color: #4ebd4e;
